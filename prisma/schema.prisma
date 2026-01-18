@@ -1,0 +1,174 @@
+// This is your Prisma schema file for Zerone 2026 Tech Fest
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  USER
+  ADMIN
+  ORGANIZER
+}
+
+enum TicketType {
+  REGULAR
+  VIP
+}
+
+enum RegistrationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id                String   @id @default(cuid())
+  name              String
+  email             String   @unique
+  phone             String
+  password          String
+  institution       String
+  district          String
+  referralCode      String?
+  role              UserRole  @default(USER)
+  ticketNumber      String   @unique
+  ticketType        TicketType @default(REGULAR)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  // Relations
+  teamMemberships   TeamMember[]
+  eventRegistrations EventRegistration[]
+  vipRegistrations   VIPRegistration[]
+  attendances        Attendance[]
+}
+
+model Event {
+  id              String   @id @default(cuid())
+  name            String
+  isTeamEvent     Boolean  @default(false)
+  teamSize        Int?
+  rewardPool      String
+  registrationFee Int      @default(0)
+  time            String
+  venue           String
+  description     String
+  coordinator1Name  String
+  coordinator1Phone String
+  coordinator2Name  String?
+  coordinator2Phone String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  teamMembers     TeamMember[]
+  registrations   EventRegistration[]
+  sponsors        EventSponsor[]
+  attendances     Attendance[]
+}
+
+model TeamMember {
+  id              String   @id @default(cuid())
+  eventId         String
+  teamLeadId      String
+  eventRegistrationId String?
+  memberName      String
+  memberTicketNumber String
+  createdAt       DateTime @default(now())
+
+  // Relations
+  event           Event    @relation(fields: [eventId], references: [id])
+  teamLead        User     @relation(fields: [teamLeadId], references: [id])
+  eventRegistration EventRegistration? @relation(fields: [eventRegistrationId], references: [id])
+}
+
+model EventRegistration {
+  id              String             @id @default(cuid())
+  eventId         String
+  userId          String
+  status          RegistrationStatus @default(PENDING)
+  transactionId   String?
+  isTeamEvent     Boolean
+  finalFee        Int
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  event           Event    @relation(fields: [eventId], references: [id])
+  user            User     @relation(fields: [userId], references: [id])
+  teamMembers     TeamMember[]
+}
+
+model VIPRegistration {
+  id              String             @id @default(cuid())
+  userId          String   @unique
+  transactionId   String
+  status          RegistrationStatus @default(PENDING)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  user            User     @relation(fields: [userId], references: [id])
+}
+
+enum SponsorType {
+  TITLE
+  CO_SPONSOR
+  EVENT_SPONSOR
+}
+
+model Sponsor {
+  id              String     @id @default(cuid())
+  name            String
+  logoUrl         String?
+  websiteUrl      String?
+  type            SponsorType
+  eventName       String?    // Only for event sponsors
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  // Relations
+  eventSponsors   EventSponsor[]
+}
+
+model EventSponsor {
+  id              String   @id @default(cuid())
+  sponsorId       String
+  eventId         String?
+
+  // Relations
+  sponsor         Sponsor  @relation(fields: [sponsorId], references: [id])
+  event           Event?   @relation(fields: [eventId], references: [id])
+}
+
+model ContactInfo {
+  id                      String   @id @default(cuid())
+  studentCoordinatorName  String
+  studentCoordinatorPhone String
+  studentCoordinatorEmail String
+  facultyCoordinatorName  String
+  facultyCoordinatorPhone String
+  facultyCoordinatorEmail String
+  festEmail               String
+  collegeEmail            String
+  collegeAddress          String
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+}
+
+model Attendance {
+  id              String   @id @default(cuid())
+  userId          String
+  eventId         String?
+  isFestAttendance Boolean @default(false)
+  markedAt        DateTime @default(now())
+
+  // Relations
+  user            User     @relation(fields: [userId], references: [id])
+  event           Event?   @relation(fields: [eventId], references: [id])
+}
