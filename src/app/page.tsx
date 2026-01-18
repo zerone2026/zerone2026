@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Ticket, Calendar, Award, Users, ArrowRight, MapPin, Code, Gamepad2, Music, PartyPopper, X, CheckCircle2, Crown, Close } from 'lucide-react';
+import { Ticket, Calendar, Award, Users, ArrowRight, MapPin, Code, Gamepad2, Music, PartyPopper, X, CheckCircle2, Crown } from 'lucide-react';
 import Link from 'next/link';
 
 export default function HomePage() {

@@ -7,17 +7,16 @@ export async function GET(request: NextRequest) {
     const eventId = searchParams.get('eventId');
 
     const eventRegistrations = await db.eventRegistration.findMany({
-      where: eventId ? { eventId } : undefined,
-      where: {
-        status: 'APPROVED',
-      },
-      include: {
-        user: true,
-        event: true,
-        teamMembers: true,
-      },
-      orderBy: { createdAt: 'desc' },
-    });
+  where: {
+    ...(eventId ? { eventId } : {}),
+    status: 'APPROVED',
+  },
+  include: {
+    user: true,
+    event: true,
+  },
+});
+
 
     return NextResponse.json({ registrations: eventRegistrations });
   } catch (error) {
