@@ -33,6 +33,7 @@ export default function OrganizerDashboard() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedEventForDetails, setSelectedEventForDetails] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [ticketInput, setTicketInput] = useState('');
 
   useEffect(() => {
     const organizerData = localStorage.getItem('organizer');
@@ -87,32 +88,29 @@ export default function OrganizerDashboard() {
     router.push('/');
   };
 
-  const handleScanQRCode = async (qrCode: string) => {
-    if (!qrCode) return;
+const handleScanQRCode = async (ticketCode: string) => {
+  if (!ticketCode) return;
 
-    try {
-      const res = await fetch('/api/organizer/scan', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          qrCode,
-          type: attendanceType,
-          eventId: attendanceType === 'event' ? selectedEvent?.id : null,
-        }),
-      });
+  try {
+    const res = await fetch('/api/organizer/scan', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ticketCode,
+        type: attendanceType,
+        eventId: attendanceType === 'event' ? selectedEvent?.id : null,
+      }),
+    });
 
-      const data = await res.json();
+    const data = await res.json();
 
-      if (!res.ok) {
-        alert(data.error || 'Scan failed');
-      } else if (data.message) {
-        alert(data.message);
-      }
-    } catch (err) {
-      alert('Scan failed');
-      console.error(err);
-    }
-  };
+    alert(data.message || data.error || 'Scan completed');
+  } catch (err) {
+    alert('Scan failed');
+    console.error(err);
+  }
+};
+
 
   const simulateQRScan = (ticketNumber: string) => {
     handleScanQRCode(ticketNumber);
@@ -293,22 +291,23 @@ export default function OrganizerDashboard() {
                       </label>
                       <div className="flex gap-2 mt-4">
                         <input
-                          type="text"
-                          id="ticket-number-input"
-                          className="flex-1 bg-white/5 border border-amber-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-400"
-                          placeholder="Ticket number"
-                        />
+  type="text"
+  value={ticketInput}
+  onChange={(e) => setTicketInput(e.target.value)}
+  className="flex-1 bg-white/5 border border-amber-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-400"
+  placeholder="Ticket number"
+/>
+
                         <button
-                          onClick={() => {
-                            const input = document.getElementById('ticket-number-input') as HTMLInputElement;
-                            if (input && input.value) {
-                              simulateQRScan(input.value);
-                            }
-                          }}
-                          className="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-black font-bold px-6 py-3 rounded-lg transition-all"
-                        >
-                          Mark Attendance
-                        </button>
+  onClick={() => {
+    handleScanQRCode(ticketInput);
+    setTicketInput('');
+  }}
+  className="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-black font-bold px-6 py-3 rounded-lg transition-all"
+>
+  Mark Attendance
+</button>
+
                       </div>
                     </div>
 
