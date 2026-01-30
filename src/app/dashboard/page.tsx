@@ -522,7 +522,7 @@ export default function DashboardPage() {
                       <CheckCircle2 className="w-5 h-5 text-green-400" />
                       <div>
                         <span className="font-semibold">Food included:</span>
-                        <p className="text-sm text-gray-400">Day 01: Lunch, Dinner | Day 02: Breakfast, Lunch</p>
+                        <p className="text-sm text-gray-400">Day 01: Dinner | Day 02: Breakfast, Lunch</p>
                       </div>
                     </li>
                     <li className="flex items-center gap-2">
