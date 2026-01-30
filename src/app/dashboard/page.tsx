@@ -225,7 +225,7 @@ export default function DashboardPage() {
                 className="w-10 h-10"
               />
               <div>
-                <h1 className="text-xl md:text-2xl font-bold text-white">ZERONE 2026</h1>
+                <h1 className="text-xl md:text-2xl font-bold text-white">ZERONE '26</h1>
                 <p className="text-sm text-gray-400">{user.name}</p>
               </div>
             </div>
