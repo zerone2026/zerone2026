@@ -62,7 +62,7 @@ export default function HomePage() {
                   transition={{ delay: 0.3 }}
                   className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 bg-clip-text text-transparent"
                 >
-                  ZERONE 2026
+                  ZERONE '26
                 </motion.h1>
               </div>
             </motion.div>
@@ -110,10 +110,10 @@ export default function HomePage() {
                     />
                   </motion.div>
                   <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 bg-clip-text text-transparent mb-4">
-                    ZERONE 2026
+                    ZERONE '26
                   </h1>
                   <p className="text-lg md:text-xl text-gray-300 mb-8">
-                    National Level Tech Fest
+                    Discover the Undiscovered
                   </p>
                 </motion.div>
 
@@ -144,7 +144,7 @@ export default function HomePage() {
                     <MapPin className="w-8 h-8 md:w-10 md:h-10 text-amber-400" />
                     <div className="text-left">
                       <p className="text-gray-400 text-xs md:text-sm uppercase tracking-wider">Venue</p>
-                      <p className="text-base md:text-lg font-bold text-white">MES Ponnani</p>
+                      <p className="text-base md:text-lg font-bold text-white">MES Ponnani College</p>
                     </div>
                   </div>
                 </motion.div>
@@ -274,7 +274,7 @@ export default function HomePage() {
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
                   Featured
                 </h2>
-                <p className="text-lg md:text-xl text-gray-400">Experience best of Zerone 2026</p>
+                <p className="text-lg md:text-xl text-gray-400">Experience best of Zerone '26</p>
               </motion.div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
@@ -324,7 +324,7 @@ export default function HomePage() {
                 transition={{ duration: 0.6 }}
                 className="max-w-4xl mx-auto text-center bg-white/5 backdrop-blur-lg border border-amber-500/20 rounded-xl p-8 md:p-12"
               >
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Join Zerone 2026?</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Join Zerone '26?</h2>
                 <p className="text-lg md:text-xl text-gray-400 mb-8">
                   Register now and get your golden ticket. Upgrade to VIP for exclusive perks!
                 </p>
