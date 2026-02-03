@@ -504,10 +504,7 @@ export default function OrganizerDashboard() {
                       {events.map((event) => (
                         <button
                           key={event.id}
-                          onClick={() => {
-  setSelectedEventForRegistrations(event);
-  loadEventRegistrations(event.id);
-}}
+                          onClick={() => loadEventRegistrations(event.id)}
                           className="p-4 rounded-lg transition-all bg-white/10 hover:bg-white/20 text-white"
                         >
                           <p className="font-bold">{event.name}</p>
@@ -569,8 +566,8 @@ export default function OrganizerDashboard() {
                 )}
 
                 {registrationType === 'event' &&
-selectedEventForRegistrations
- && (
+  selectedEventForRegistrations &&
+  eventRegistrations.length > 0 && (
     <div>
       <button
         onClick={() => setSelectedEventForRegistrations(null)}
