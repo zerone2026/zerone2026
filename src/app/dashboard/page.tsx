@@ -555,7 +555,7 @@ export default function DashboardPage() {
                 </div>
                 <p className="text-white mb-4">
                   Transfer <span className="text-amber-400 font-bold text-xl">₹350</span> to{' '}
-                  <span className="font-mono">+91 6235460019</span> via GPay
+                  <span className="font-mono">+91 75919 83565</span> via GPay
                 </p>
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-300 mb-2">
