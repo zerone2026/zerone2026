@@ -555,7 +555,7 @@ export default function DashboardPage() {
                 </div>
                 <p className="text-white mb-4">
                   Transfer <span className="text-amber-400 font-bold text-xl">₹350</span> to{' '}
-                  <span className="font-mono">+91 88484 75192</span> via GPay
+                  <span className="font-mono"> 88484 75192</span> via GPay
                 </p>
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -745,7 +745,7 @@ export default function DashboardPage() {
                   <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-6">
                     <div className="text-center">
                       <p className="text-amber-400 text-sm mb-3 font-semibold">Payment Instructions</p>
-                      <p className="text-white text-lg mb-4">Transfer amount to <span className="font-mono font-bold">+91 62354 60019</span> via GPay and upload transaction ID below</p>
+                      <p className="text-white text-lg mb-4">Transfer amount to <span className="font-mono font-bold"> +91 88484 75192</span> via GPay and upload transaction ID below</p>
                       <div className="mt-4">
                         <label className="block text-sm font-medium text-gray-300 mb-2">
                           Transaction ID *
@@ -767,7 +767,7 @@ export default function DashboardPage() {
                   <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-6">
                     <div className="text-center">
                       <p className="text-amber-400 text-sm mb-3 font-semibold">Payment Instructions</p>
-                      <p className="text-white text-lg mb-4">Transfer amount to <span className="font-mono font-bold">+91 88484 75192</span> via GPay and upload transaction ID below</p>
+                      <p className="text-white text-lg mb-4">Transfer amount to <span className="font-mono font-bold"> +91 88484 75192</span> via GPay and upload transaction ID below</p>
                       <div className="mt-4">
                         <label className="block text-sm font-medium text-gray-300 mb-2">
                           Transaction ID *
